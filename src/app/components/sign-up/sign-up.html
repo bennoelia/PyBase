@@ -1,26 +1,38 @@
-<main class="form-signin">
-    <form>
-      <div class="d-flex justify-content-center">
-        <div class="form-group col-sm-6 col-md-4">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-      </div> 
-      <div class="d-flex justify-content-center">
-        <div class="form-group col-sm-6 col-md-4">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center bg-light bg-gradient">
+  <!-- <h1 class="display-4 fw-normal">Pricing</h1> -->
+  <p class="fs-5 text-muted">Ingrese Usuario y Contraseña</p>
+</div>
+
+<div class="d-flex justify-content-center bg-light bg-gradient">
+  <div class="form-group col-sm-6 col-md-4 col-lg-4">
+    <form [formGroup]="formularioCreado">
+      <div class="mb-3">
+        <label for="nombreUsuario" class="form-label">Usuario</label>
+        <input type="text" class="form-control" id="nombreUsuario" aria-describedby=" " formControlName='usuario'>
+        <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        <div *ngIf="formularioCreado.controls['usuario'].invalid && formularioCreado.controls['usuario'].dirty" class="alert alert-danger" role="alert">
+          Por favor ingrese el Usuario
         </div>
       </div>
-      <div class="d-flex justify-content-center">
-        <div class="form-group col-sm-6 col-md-4">
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" formControlName='pass'>
+          <div *ngIf="formularioCreado.controls['pass'].invalid && formularioCreado.controls['pass'].dirty">
+              <!-- <div *ngIf="formularioCreado.controls['pass'].errors.minLength" class="alert alert-danger" role="alert"> -->
+              <div *ngIf="formularioCreado.controls['pass'].errors?.['minLength']" class="alert alert-danger" role="alert"> 
+                  La contraseña debe tener al menos 8 caracteres
+              </div>
+              <div *ngIf="formularioCreado.controls['pass'].errors?.['required']" class="alert alert-danger" role="alert">
+                    Por favor ingrese la Contraseña
+              </div>
+              <!-- <div *ngIf="firstName.errors?.['required']">First Name is required</div> -->
+          </div>
+      </div>
+      <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
       </div>
-      <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-    </form>       
-</main>
+      <button [disabled]="!formularioCreado.valid" type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+  </div>
+</div>
