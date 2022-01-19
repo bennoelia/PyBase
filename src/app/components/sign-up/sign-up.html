@@ -17,16 +17,15 @@
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
         <input type="password" class="form-control" id="exampleInputPassword1" formControlName='pass'>
-          <div *ngIf="formularioCreado.controls['pass'].invalid && formularioCreado.controls['pass'].dirty">
+          <!-- <div *ngIf="formularioCreado.controls['pass'].invalid && formularioCreado.controls['pass'].dirty"> -->
               <!-- <div *ngIf="formularioCreado.controls['pass'].errors.minLength" class="alert alert-danger" role="alert"> -->
-              <div *ngIf="formularioCreado.controls['pass'].errors?.['minLength']" class="alert alert-danger" role="alert"> 
+              <div *ngIf="formularioCreado.controls['pass'].errors?.['minlength'] " class="alert alert-danger" role="alert"> 
                   La contraseña debe tener al menos 8 caracteres
               </div>
-              <div *ngIf="formularioCreado.controls['pass'].errors?.['required']" class="alert alert-danger" role="alert">
+              <div *ngIf="formularioCreado.controls['pass'].errors?.['required'] && formularioCreado.controls['pass'].dirty" class="alert alert-danger" role="alert">
                     Por favor ingrese la Contraseña
               </div>
-              <!-- <div *ngIf="firstName.errors?.['required']">First Name is required</div> -->
-          </div>
+          <!-- </div> -->
       </div>
       <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
